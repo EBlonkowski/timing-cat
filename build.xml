@@ -1,0 +1,42 @@
+<project name="TimingCat" default="main">
+
+	<property name="lib.dir" value="lib"/>
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+    </path>
+
+	<!-- Clean -->
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+	<!-- Compile -->
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="source" destdir="build/classes" classpathref="classpath"/>
+    </target>
+
+	<!-- Jar -->
+    <target name="jar" depends="compile">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/TimingCat.jar" basedir="build/classes" >
+            <manifest>
+                <attribute name="Main-Class" value="timing.cat.Main"/>
+            </manifest>
+        </jar>
+    </target>
+
+	<!-- Run -->
+    <target name="run" depends="jar">
+        <java classname="timing.cat.Main" fork="true">
+            <classpath>
+                <path refid="classpath"/>
+                <path location="build/jar/TimingCat.jar"/>
+            </classpath>
+		</java>
+    </target>
+
+	<!-- Main -->
+    <target name="main" depends="clean,run"/>
+</project>
