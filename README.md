@@ -1,7 +1,7 @@
 timing-cat
 ==========
 
-Find Out What People Think of Your Organization
+Find out what people think of your organization
 
 1- Origin of the name
 
