@@ -372,13 +372,12 @@ public class Main
 		tweet = (DBObject) statuses.get(String.valueOf(i));
 		while(tweet != null) {
 			// On sauvegarde le tweet #i
-			Tweet.save(tweet);
+			Tweet.save(Tweet.strip(tweet));
 			i++;
 			tweet = (DBObject) statuses.get(String.valueOf(i));
 		}
 		// On affiche le nombre de résultats obtenus :
 		DBObject searchMetadata = (DBObject) results.get("search_metadata");
-		System.out.println("Nombre de tweets correspondant à la recherche : " + searchMetadata.get("count").toString());
 		System.out.println(searchMetadata);
 		DBConnectionSingleton.getInstance().close();
     }
